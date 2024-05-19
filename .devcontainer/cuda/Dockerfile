@@ -11,9 +11,10 @@ RUN conda init
 # copy "noop.txt" so the COPY instruction does not fail if no environment.yml exists.
 COPY .devcontainer/cuda/environment.yml* .devcontainer/noop.txt /tmp/conda-tmp/
 RUN if [ -f "/tmp/conda-tmp/environment.yml" ]; then umask 0002 && /opt/conda/bin/conda env create -n QML-QPF -f /tmp/conda-tmp/environment.yml; fi \
-    && /opt/conda/bin/conda install -y -c conda-forge --name QML-QPF cuquantum \
-    && /opt/conda/bin/conda install -y -c conda-forge tensorboard \
     && rm -rf /tmp/conda-tmp
+
+#    && /opt/conda/bin/conda install -y -c conda-forge --name QML-QPF cuquantum \
+#    && /opt/conda/bin/conda install -y -c conda-forge tensorboard \
 
 # [Optional] Uncomment to install a different version of Python than the default
 # RUN conda install -y python=3.6 \
